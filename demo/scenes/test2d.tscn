@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://test2d"]
+
+[ext_resource type="Script" path="res://scripts/player_2d.gd" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://chatui" path="res://scenes/chat_ui.tscn" id="2_chat"]
+
+[sub_resource type="RectangleShape2D" id="Rect1"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="Rect2"]
+size = Vector2(512, 32)
+
+[sub_resource type="QuadMesh" id="Quad1"]
+size = Vector2(14, 14)
+
+[sub_resource type="QuadMesh" id="Quad2"]
+size = Vector2(512, 32)
+
+[sub_resource type="QuadMesh" id="Quad3"]
+size = Vector2(32, 32)
+
+[sub_resource type="StandardMaterial3D" id="Mat_red"]
+albedo_color = Color(1, 0.2, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_green"]
+albedo_color = Color(0.2, 0.6, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_yellow"]
+albedo_color = Color(0.8, 0.6, 0, 1)
+
+[node name="Test2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(128, 160)
+script = ExtResource("1_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("Rect1")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Player"]
+mesh = SubResource("Quad1")
+material_override = SubResource("Mat_red")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 5.0
+current = true
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(256, 192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("Rect2")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Ground"]
+mesh = SubResource("Quad2")
+material_override = SubResource("Mat_green")
+
+[node name="Block" type="StaticBody2D" parent="."]
+position = Vector2(200, 140)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block"]
+shape = SubResource("Rect1")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Block"]
+mesh = SubResource("Quad3")
+material_override = SubResource("Mat_yellow")

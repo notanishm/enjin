@@ -1,0 +1,48 @@
+﻿# Capability: Animation State Machine
+# Manages animation states and transitions
+
+id: animation.state_machine
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - state_machine
+  - animation_transitions
+  - conditional_logic
+
+# Required Components
+required_components:
+  - AnimationPlayer
+optional_components:
+  - AnimationTree
+
+# Integration
+adapter: godot_animation_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - state_machine_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Finite state machine for managing animation states with transitions.

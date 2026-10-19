@@ -1,0 +1,21 @@
+# Secrets
+.env
+.env.*
+
+# Godot import cache
+.godot/
+*.tmp
+
+# Large generated assets
+demo/model/
+
+# Engine binaries / checkouts (not project source)
+godot_exe/
+godot_source/
+godot/
+third_party/
+.opencode/
+
+# OS
+Thumbs.db
+.DS_Store

@@ -1,0 +1,48 @@
+﻿# Capability: Interactable
+# Add to any object to make it interactable
+
+id: interaction.interactable
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node3D
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - interactable_objects
+  - visual_feedback
+  - one_shot_interactions
+
+# Required Components
+required_components:
+  - Node3D
+optional_components:
+  - MeshInstance3D
+
+# Integration
+adapter: godot_interaction_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - interactable_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Makes objects interactable with visual feedback.

@@ -1,0 +1,48 @@
+﻿# Capability: Trail Effect
+# Creates trailing visual effects
+
+id: vfx.trails
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node3D
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - trail_mesh
+  - fade_out
+  - gradient_support
+
+# Required Components
+required_components:
+  - Node3D
+optional_components:
+  - MeshInstance3D
+
+# Integration
+adapter: godot_vfx_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - trails_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Creates trailing visual effects behind moving objects.

@@ -1,0 +1,76 @@
+﻿# Capability: Third Person Camera
+# Camera system for third-person character games
+
+id: camera.third_person
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Camera3D
+language: GDScript
+
+# Source Provenance
+source: Jeh3no/Godot-Third-Person-Controller
+upstream_sources:
+  - gtibo/Godot-Plush-Character
+  - ramokz/phantom-camera
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - follow_camera
+  - orbit_camera
+  - camera_collision
+  - mouse_look
+  - camera_smoothing
+  - camera_transitions
+
+# Required Components
+required_components:
+  - Camera3D
+  - input_map:
+      - camera_rotate_x
+      - camera_rotate_y
+      - camera_zoom_in
+      - camera_zoom_out
+
+# Optional Components
+optional_components:
+  - SpringArm3D
+  - Camera3D
+  - RayCast3D
+
+# Integration
+adapter: godot_camera_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - camera_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Third-person camera system with follow, orbit, and collision.
+  Supports mouse/touch input for camera control.
+
+# Provenance
+provenance:
+  extracted_from: Jeh3no/Godot-Third-Person-Controller
+  reference: ramokz/phantom-camera
+  adapted_by: AI Capability Extractor v1.0
+  extraction_date: 2026-09-21
+  normalized: true
+
+# Notes
+notes: |
+  Camera as plugin (Phantom Camera) recommended for complex projects.
+  This is standalone camera logic for simple implementations.

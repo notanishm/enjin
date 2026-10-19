@@ -1,0 +1,47 @@
+﻿# Capability: Dust Effect
+# Creates dust particles on movement/landing
+
+id: vfx.dust
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: GPUParticles3D
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - dust_particles
+  - surface_detection
+  - emission_shapes
+
+# Required Components
+required_components:
+  - GPUParticles3D
+optional_components: []
+
+# Integration
+adapter: godot_vfx_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - dust_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Creates dust particle effects on movement or landing.

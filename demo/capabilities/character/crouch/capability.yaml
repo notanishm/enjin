@@ -1,0 +1,71 @@
+﻿# Capability: Crouch
+# Standalone crouch mechanic capability
+
+id: character.crouch
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: CharacterBody3D
+language: GDScript
+
+# Source Provenance
+source: studiobool/SuperTuxWorld
+upstream_sources:
+  - godotengine/godot-demo-projects
+
+# Licensing
+license: GPL-3.0 (code from SuperTuxWorld)
+# Note: Code is GPL-3.0, verify compatibility before use
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - crouch_speed
+  - crouch_height
+  - crouch_toggle
+  - slide
+
+# Required Components
+required_components:
+  - CharacterBody3D
+  - input_map:
+      - crouch
+
+# Optional Components
+optional_components:
+  - CollisionShape3D
+  - AnimationPlayer
+
+# Integration
+adapter: godot_crouch_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - crouch_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Standalone crouch mechanic with toggle and hold modes.
+  Can modify collision shape and movement speed.
+
+# Provenance
+provenance:
+  extracted_from: studiobool/SuperTuxWorld
+  reference: godotengine/godot-demo-projects
+  adapted_by: AI Capability Extractor v1.0
+  extraction_date: 2026-09-21
+  normalized: true
+  
+# License Notes
+license_notes: |
+  Source code is GPL-3.0 licensed.
+  Verify license compatibility before integration.
+  Consider re-implementing for MIT projects.

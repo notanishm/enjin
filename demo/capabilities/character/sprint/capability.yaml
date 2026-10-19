@@ -1,0 +1,64 @@
+﻿# Capability: Sprint
+# Standalone sprint mechanic capability
+
+id: character.sprint
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: CharacterBody3D
+language: GDScript
+
+# Source Provenance
+source: Jeh3no/Godot-Third-Person-Controller
+upstream_sources:
+  - studiobool/SuperTuxWorld
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - sprint_speed
+  - sprint_toggle
+  - sprint_stamina
+  - sprint_boost
+
+# Required Components
+required_components:
+  - CharacterBody3D
+  - input_map:
+      - run
+
+# Optional Components
+optional_components:
+  - AnimationPlayer
+  - StaminaSystem
+
+# Integration
+adapter: godot_sprint_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - sprint_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Standalone sprint mechanic with toggle and hold modes.
+  Can include optional stamina system.
+
+# Provenance
+provenance:
+  extracted_from: Jeh3no/Godot-Third-Person-Controller
+  reference: studiobool/SuperTuxWorld
+  adapted_by: AI Capability Extractor v1.0
+  extraction_date: 2026-09-21
+  normalized: true

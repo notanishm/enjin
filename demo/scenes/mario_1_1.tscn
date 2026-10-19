@@ -1,0 +1,716 @@
+[gd_scene load_steps=12 format=3 uid="uid://mario11v2"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_mgr"]
+[ext_resource type="Script" path="res://scripts/mario_player.gd" id="2_player"]
+[ext_resource type="Script" path="res://scripts/goomba.gd" id="3_goomba"]
+[ext_resource type="Script" path="res://scripts/coin.gd" id="4_coin"]
+[ext_resource type="Script" path="res://scripts/flag_pole.gd" id="5_flag"]
+[ext_resource type="PackedScene" uid="uid://model_scene" path="res://model/scene.gltf" id="6_model"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_block"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_ground"]
+albedo_color = Color(0.22, 0.58, 0.16, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_brick"]
+albedo_color = Color(0.76, 0.42, 0.12, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_question"]
+albedo_color = Color(1.0, 0.8, 0.0, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_pipe"]
+albedo_color = Color(0.0, 0.75, 0.0, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_goomba"]
+albedo_color = Color(0.55, 0.3, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_coin"]
+albedo_color = Color(1.0, 0.9, 0.0, 1)
+emission_enabled = true
+emission = Color(1.0, 0.9, 0.0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_block"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_player"]
+size = Vector3(0.6, 0.8, 0.6)
+
+[sub_resource type="SphereMesh" id="SphereMesh_goomba"]
+radius = 0.4
+height = 0.8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_coin"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.1
+
+[sub_resource type="Environment" id="Env_sky"]
+background_mode = 1
+background_color = Color(0.4, 0.6, 0.9, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.8, 0.8, 0.8, 1)
+ambient_light_energy = 0.5
+
+[node name="Mario1_1" type="Node3D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_mgr")
+timer = NodePath("../Timer")
+
+[node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 0)
+script = ExtResource("2_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("BoxShape3D_player")
+
+[node name="Model" parent="Player" instance=ExtResource("6_model")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2, 10)
+fov = 50.0
+current = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="BG" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4, 0.6, 0.9, 1)
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "MARIO"
+
+[node name="ScoreValue" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 35.0
+offset_right = 200.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "000000"
+
+[node name="CoinsLabel" type="Label" parent="UI"]
+offset_left = 250.0
+offset_top = 10.0
+offset_right = 350.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "COINS"
+
+[node name="CoinsValue" type="Label" parent="UI"]
+offset_left = 250.0
+offset_top = 35.0
+offset_right = 350.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "x00"
+
+[node name="WorldLabel" type="Label" parent="UI"]
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 550.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "WORLD"
+
+[node name="WorldValue" type="Label" parent="UI"]
+offset_left = 450.0
+offset_top = 35.0
+offset_right = 550.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "1-1"
+
+[node name="LivesLabel" type="Label" parent="UI"]
+offset_left = 650.0
+offset_top = 10.0
+offset_right = 750.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "LIVES"
+
+[node name="LivesValue" type="Label" parent="UI"]
+offset_left = 650.0
+offset_top = 35.0
+offset_right = 750.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "x3"
+
+[node name="TimeLabel" type="Label" parent="UI"]
+offset_left = 850.0
+offset_top = 10.0
+offset_right = 950.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "TIME"
+
+[node name="TimeValue" type="Label" parent="UI"]
+offset_left = 850.0
+offset_top = 35.0
+offset_right = 950.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "400"
+
+[node name="Timer" type="Timer" parent="GameManager"]
+wait_time = 1.0
+autostart = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_sky")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 15, 10)
+light_energy = 1.2
+light_color = Color(1, 0.98, 0.95, 1)
+
+[node name="Ground" type="Node3D" parent="."]
+
+[node name="G0" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G0"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G0"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G1" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G1"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G1"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G2" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G2"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G2"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G3" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G3"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G3"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G4" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G4"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G4"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G5" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G5"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G5"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G6" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G6"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G6"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G7" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G7"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G7"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G8" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G8"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G8"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G9" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G9"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G9"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G10" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G10"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G10"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G11" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G11"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G11"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G12" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G12"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G12"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G13" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G13"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G13"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G14" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G14"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G14"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G15" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G15"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G15"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G16" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G16"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G16"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G17" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G17"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G17"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G18" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G18"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G18"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G19" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G19"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G19"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G20" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G20"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G20"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G21" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G21"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G21"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G22" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G22"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G22"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G23" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G23"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G23"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G24" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G24"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G24"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G25" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G25"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G25"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G26" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G26"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G26"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G27" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G27"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G27"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G28" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G28"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G28"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G29" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G29"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G29"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G30" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G30"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G30"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G31" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G31"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G31"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="G32" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/G32"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_ground")
+
+[node name="Col" type="CollisionShape3D" parent="Ground/G32"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="QB16" type="StaticBody3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blocks/QB16"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_question")
+
+[node name="Col" type="CollisionShape3D" parent="Blocks/QB16"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="QB21" type="StaticBody3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blocks/QB21"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_question")
+
+[node name="Col" type="CollisionShape3D" parent="Blocks/QB21"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="QB23" type="StaticBody3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blocks/QB23"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_question")
+
+[node name="Col" type="CollisionShape3D" parent="Blocks/QB23"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Br22" type="StaticBody3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blocks/Br22"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_brick")
+
+[node name="Col" type="CollisionShape3D" parent="Blocks/Br22"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Br77" type="StaticBody3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blocks/Br77"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_brick")
+
+[node name="Col" type="CollisionShape3D" parent="Blocks/Br77"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Br78" type="StaticBody3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blocks/Br78"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_brick")
+
+[node name="Col" type="CollisionShape3D" parent="Blocks/Br78"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="QB79" type="StaticBody3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blocks/QB79"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_question")
+
+[node name="Col" type="CollisionShape3D" parent="Blocks/QB79"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Br80" type="StaticBody3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blocks/Br80"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_brick")
+
+[node name="Col" type="CollisionShape3D" parent="Blocks/Br80"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Goomba1" type="CharacterBody3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1.5, 0)
+script = ExtResource("3_goomba")
+
+[node name="Col" type="CollisionShape3D" parent="Enemies/Goomba1"]
+shape = SubResource("BoxShape3D_player")
+
+[node name="Mesh" type="MeshInstance3D" parent="Enemies/Goomba1"]
+mesh = SubResource("SphereMesh_goomba")
+material_override = SubResource("Mat_goomba")
+
+[node name="Goomba2" type="CharacterBody3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.5, 0)
+script = ExtResource("3_goomba")
+
+[node name="Col" type="CollisionShape3D" parent="Enemies/Goomba2"]
+shape = SubResource("BoxShape3D_player")
+
+[node name="Mesh" type="MeshInstance3D" parent="Enemies/Goomba2"]
+mesh = SubResource("SphereMesh_goomba")
+material_override = SubResource("Mat_goomba")
+
+[node name="Goomba3" type="CharacterBody3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 1.5, 0)
+script = ExtResource("3_goomba")
+
+[node name="Col" type="CollisionShape3D" parent="Enemies/Goomba3"]
+shape = SubResource("BoxShape3D_player")
+
+[node name="Mesh" type="MeshInstance3D" parent="Enemies/Goomba3"]
+mesh = SubResource("SphereMesh_goomba")
+material_override = SubResource("Mat_goomba")
+
+[node name="Collectibles" type="Node3D" parent="."]
+
+[node name="Coin1" type="Area3D" parent="Collectibles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3, 0)
+script = ExtResource("4_coin")
+
+[node name="Col" type="CollisionShape3D" parent="Collectibles/Coin1"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Mesh" type="MeshInstance3D" parent="Collectibles/Coin1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_coin")
+material_override = SubResource("Mat_coin")
+
+[node name="Coin2" type="Area3D" parent="Collectibles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 8, 0)
+script = ExtResource("4_coin")
+
+[node name="Col" type="CollisionShape3D" parent="Collectibles/Coin2"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Mesh" type="MeshInstance3D" parent="Collectibles/Coin2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_coin")
+material_override = SubResource("Mat_coin")
+
+[node name="Pipes" type="Node3D" parent="."]
+
+[node name="Pipe1" type="StaticBody3D" parent="Pipes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Pipes/Pipe1"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_pipe")
+
+[node name="Col" type="CollisionShape3D" parent="Pipes/Pipe1"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Pipe2" type="StaticBody3D" parent="Pipes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Pipes/Pipe2"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_pipe")
+
+[node name="Col" type="CollisionShape3D" parent="Pipes/Pipe2"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Pipe3" type="StaticBody3D" parent="Pipes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Pipes/Pipe3"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_pipe")
+
+[node name="Col" type="CollisionShape3D" parent="Pipes/Pipe3"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Pipe4" type="StaticBody3D" parent="Pipes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Pipes/Pipe4"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Mat_pipe")
+
+[node name="Col" type="CollisionShape3D" parent="Pipes/Pipe4"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="FlagPole" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190, 0, 0)
+script = ExtResource("5_flag")
+
+[node name="Col" type="CollisionShape3D" parent="FlagPole"]
+
+[node name="PoleMesh" type="MeshInstance3D" parent="FlagPole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="FlagMesh" type="MeshInstance3D" parent="FlagPole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 8, 0)
+material_override = SubResource("Mat_question")

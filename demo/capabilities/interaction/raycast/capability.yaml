@@ -1,0 +1,49 @@
+﻿# Capability: Raycast Interactor
+# Performs raycasts to detect and interact with objects
+
+id: interaction.raycast
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node3D
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - raycast_detection
+  - interaction_system
+  - line_of_sight
+
+# Required Components
+required_components:
+  - Node3D
+  - RayCast3D
+optional_components:
+  - Camera3D
+
+# Integration
+adapter: godot_interaction_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - raycast_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Raycast-based interaction system for detecting objects.

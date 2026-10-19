@@ -1,0 +1,48 @@
+﻿# Capability: Health System
+# Manages health, damage, healing, and death
+
+id: gameplay.health
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - health_management
+  - damage_system
+  - healing
+  - regeneration
+  - invincibility
+
+# Required Components
+required_components: []
+optional_components: []
+
+# Integration
+adapter: godot_gameplay_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - health_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Health system with damage, healing, and death handling.

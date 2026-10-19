@@ -1,0 +1,48 @@
+﻿# Capability: Damage System
+# Calculates and applies damage with modifiers
+
+id: gameplay.damage
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - damage_calculation
+  - critical_hits
+  - resistances
+  - vulnerabilities
+
+# Required Components
+required_components: []
+optional_components:
+  - HealthSystem
+
+# Integration
+adapter: godot_gameplay_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - damage_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Calculates damage with modifiers, resistances, and critical hits.

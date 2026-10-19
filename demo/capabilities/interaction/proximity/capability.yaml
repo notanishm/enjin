@@ -1,0 +1,47 @@
+﻿# Capability: Proximity Detector
+# Detects objects entering/exiting a detection area
+
+id: interaction.proximity
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Area3D
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - area_detection
+  - closest_object
+  - group_filtering
+
+# Required Components
+required_components:
+  - Area3D
+optional_components: []
+
+# Integration
+adapter: godot_interaction_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - proximity_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Detects objects entering/exiting an area with filtering.

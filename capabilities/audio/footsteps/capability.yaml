@@ -1,0 +1,47 @@
+﻿# Capability: Footstep Player
+# Plays footstep sounds based on surface type
+
+id: audio.footsteps
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - surface_sounds
+  - timing_variation
+  - pitch_variation
+
+# Required Components
+required_components:
+  - AudioStreamPlayer3D
+optional_components: []
+
+# Integration
+adapter: godot_audio_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - footsteps_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Plays footstep sounds with surface detection and timing variation.

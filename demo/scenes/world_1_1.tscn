@@ -1,0 +1,659 @@
+[gd_scene load_steps=8 format=3 uid="uid://world11"]
+
+[ext_resource type="Script" path="res://scripts/player_2d.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/enemy_2d.gd" id="2_enemy"]
+[ext_resource type="Script" path="res://scripts/question_block_2d.gd" id="3_qblock"]
+[ext_resource type="Script" path="res://scripts/coin_2d.gd" id="4_coin"]
+[ext_resource type="Script" path="res://scripts/checkpoint_2d.gd" id="5_checkpoint"]
+[ext_resource type="Script" path="res://scripts/goal_2d.gd" id="6_goal"]
+[ext_resource type="Script" path="res://scripts/game_manager_2d.gd" id="7_manager"]
+
+[sub_resource type="RectangleShape2D" id="Rect_ground"]
+size = Vector2(5120, 48)
+
+[sub_resource type="RectangleShape2D" id="Rect_player"]
+size = Vector2(12, 14)
+
+[sub_resource type="RectangleShape2D" id="Rect_block"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="Rect_enemy"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="Rect_coin"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="Rect_pipe"]
+size = Vector2(32, 48)
+
+[sub_resource type="RectangleShape2D" id="Rect_checkpoint"]
+size = Vector2(8, 48)
+
+[sub_resource type="RectangleShape2D" id="Rect_goal"]
+size = Vector2(8, 48)
+
+[sub_resource type="RectangleShape2D" id="Rect_platform"]
+size = Vector2(48, 8)
+
+[sub_resource type="RectangleShape2D" id="Rect_gap_fill"]
+size = Vector2(96, 48)
+
+[sub_resource type="RectangleShape2D" id="Rect_gap_ground"]
+size = Vector2(5120, 48)
+
+[sub_resource type="Environment" id="Env_2d"]
+background_mode = 2
+background_color = Color(0.4, 0.6, 0.9, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.0
+
+[node name="World1_1" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("7_manager")
+
+[node name="Timer" type="Timer" parent="GameManager"]
+wait_time = 1.0
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+limit_left = 0
+limit_top = 0
+limit_right = 5120
+limit_bottom = 240
+editor_draw_limits = true
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(48, 176)
+script = ExtResource("1_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("Rect_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+modulate = Color(1, 0.2, 0.2, 1)
+
+[node name="SectionTriggers" type="Node2D" parent="."]
+
+[node name="Section1" type="Area2D" parent="SectionTriggers"]
+position = Vector2(400, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SectionTriggers/Section1"]
+shape = SubResource("Rect_ground")
+
+[node name="Section2" type="Area2D" parent="SectionTriggers"]
+position = Vector2(640, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SectionTriggers/Section2"]
+shape = SubResource("Rect_ground")
+
+[node name="Section3" type="Area2D" parent="SectionTriggers"]
+position = Vector2(1120, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SectionTriggers/Section3"]
+shape = SubResource("Rect_ground")
+
+[node name="Section4" type="Area2D" parent="SectionTriggers"]
+position = Vector2(1600, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SectionTriggers/Section4"]
+shape = SubResource("Rect_ground")
+
+[node name="Section5" type="Area2D" parent="SectionTriggers"]
+position = Vector2(2080, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SectionTriggers/Section5"]
+shape = SubResource("Rect_ground")
+
+[node name="Section6" type="Area2D" parent="SectionTriggers"]
+position = Vector2(2560, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SectionTriggers/Section6"]
+shape = SubResource("Rect_ground")
+
+[node name="Section7" type="Area2D" parent="SectionTriggers"]
+position = Vector2(3040, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SectionTriggers/Section7"]
+shape = SubResource("Rect_ground")
+
+[node name="Section8" type="Area2D" parent="SectionTriggers"]
+position = Vector2(3680, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SectionTriggers/Section8"]
+shape = SubResource("Rect_ground")
+
+[node name="Section9" type="Area2D" parent="SectionTriggers"]
+position = Vector2(4320, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SectionTriggers/Section9"]
+shape = SubResource("Rect_ground")
+
+[node name="Section10" type="Area2D" parent="SectionTriggers"]
+position = Vector2(4960, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SectionTriggers/Section10"]
+shape = SubResource("Rect_ground")
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="MainGround" type="StaticBody2D" parent="Ground"]
+position = Vector2(2560, 228)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/MainGround"]
+shape = SubResource("Rect_ground")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/MainGround"]
+scale = Vector2(320, 3)
+modulate = Color(0.22, 0.58, 0.16, 1)
+
+[node name="Gap1Left" type="StaticBody2D" parent="Ground"]
+position = Vector2(1920, 228)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Gap1Left"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Gap1Left"]
+scale = Vector2(120, 3)
+modulate = Color(0.22, 0.58, 0.16, 1)
+
+[node name="Gap1Right" type="StaticBody2D" parent="Ground"]
+position = Vector2(2160, 228)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Gap1Right"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Gap1Right"]
+scale = Vector2(120, 3)
+modulate = Color(0.22, 0.58, 0.16, 1)
+
+[node name="Gap2Left" type="StaticBody2D" parent="Ground"]
+position = Vector2(4080, 228)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Gap2Left"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Gap2Left"]
+scale = Vector2(96, 3)
+modulate = Color(0.22, 0.58, 0.16, 1)
+
+[node name="Gap2Right" type="StaticBody2D" parent="Ground"]
+position = Vector2(4320, 228)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Gap2Right"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Gap2Right"]
+scale = Vector2(96, 3)
+modulate = Color(0.22, 0.58, 0.16, 1)
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="QB_34" type="StaticBody2D" parent="Blocks"]
+position = Vector2(544, 144)
+script = ExtResource("3_qblock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/QB_34"]
+shape = SubResource("Rect_block")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/QB_34"]
+modulate = Color(1, 0.8, 0, 1)
+
+[node name="QB_68" type="StaticBody2D" parent="Blocks"]
+position = Vector2(1088, 144)
+script = ExtResource("3_qblock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/QB_68"]
+shape = SubResource("Rect_block")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/QB_68"]
+modulate = Color(1, 0.8, 0, 1)
+
+[node name="Br_84_a" type="StaticBody2D" parent="Blocks"]
+position = Vector2(1344, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Br_84_a"]
+shape = SubResource("Rect_block")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Br_84_a"]
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="Br_84_b" type="StaticBody2D" parent="Blocks"]
+position = Vector2(1360, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Br_84_b"]
+shape = SubResource("Rect_block")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Br_84_b"]
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="QB_84_c" type="StaticBody2D" parent="Blocks"]
+position = Vector2(1376, 112)
+script = ExtResource("3_qblock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/QB_84_c"]
+shape = SubResource("Rect_block")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/QB_84_c"]
+modulate = Color(1, 0.8, 0, 1)
+
+[node name="Br_84_d" type="StaticBody2D" parent="Blocks"]
+position = Vector2(1392, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Br_84_d"]
+shape = SubResource("Rect_block")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Br_84_d"]
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="QB_84_e" type="StaticBody2D" parent="Blocks"]
+position = Vector2(1408, 112)
+script = ExtResource("3_qblock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/QB_84_e"]
+shape = SubResource("Rect_block")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/QB_84_e"]
+modulate = Color(1, 0.8, 0, 1)
+
+[node name="Br_84_f" type="StaticBody2D" parent="Blocks"]
+position = Vector2(1424, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Br_84_f"]
+shape = SubResource("Rect_block")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Br_84_f"]
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="Platform_192" type="StaticBody2D" parent="Blocks"]
+position = Vector2(3072, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Platform_192"]
+shape = SubResource("Rect_platform")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Platform_192"]
+scale = Vector2(3, 0.5)
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="Platform_200" type="StaticBody2D" parent="Blocks"]
+position = Vector2(3200, 88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Platform_200"]
+shape = SubResource("Rect_platform")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Platform_200"]
+scale = Vector2(3, 0.5)
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="Platform_210" type="StaticBody2D" parent="Blocks"]
+position = Vector2(3360, 104)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Platform_210"]
+shape = SubResource("Rect_platform")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Platform_210"]
+scale = Vector2(3, 0.5)
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="QB_238" type="StaticBody2D" parent="Blocks"]
+position = Vector2(3808, 112)
+script = ExtResource("3_qblock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/QB_238"]
+shape = SubResource("Rect_block")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/QB_238"]
+modulate = Color(1, 0.8, 0, 1)
+
+[node name="Platform_248" type="StaticBody2D" parent="Blocks"]
+position = Vector2(3968, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Platform_248"]
+shape = SubResource("Rect_platform")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Platform_248"]
+scale = Vector2(3, 0.5)
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="Platform_256" type="StaticBody2D" parent="Blocks"]
+position = Vector2(4096, 104)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Platform_256"]
+shape = SubResource("Rect_platform")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Platform_256"]
+scale = Vector2(3, 0.5)
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="QB_268" type="StaticBody2D" parent="Blocks"]
+position = Vector2(4288, 112)
+script = ExtResource("3_qblock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/QB_268"]
+shape = SubResource("Rect_block")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/QB_268"]
+modulate = Color(1, 0.8, 0, 1)
+
+[node name="Stair_280" type="StaticBody2D" parent="Blocks"]
+position = Vector2(4480, 212)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Stair_280"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Stair_280"]
+scale = Vector2(1, 1)
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="Stair_282" type="StaticBody2D" parent="Blocks"]
+position = Vector2(4512, 196)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Stair_282"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Stair_282"]
+scale = Vector2(2, 2)
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="Stair_284" type="StaticBody2D" parent="Blocks"]
+position = Vector2(4544, 180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Stair_284"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Stair_284"]
+scale = Vector2(3, 3)
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="Stair_286" type="StaticBody2D" parent="Blocks"]
+position = Vector2(4576, 164)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Stair_286"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Stair_286"]
+scale = Vector2(4, 4)
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="Stair_288" type="StaticBody2D" parent="Blocks"]
+position = Vector2(4608, 148)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/Stair_288"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Blocks/Stair_288"]
+scale = Vector2(5, 5)
+modulate = Color(0.76, 0.42, 0.12, 1)
+
+[node name="Pipes" type="Node2D" parent="."]
+
+[node name="Pipe_155" type="StaticBody2D" parent="Pipes"]
+position = Vector2(2480, 192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipes/Pipe_155"]
+shape = SubResource("Rect_pipe")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pipes/Pipe_155"]
+modulate = Color(0, 0.75, 0, 1)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Goomba_72" type="CharacterBody2D" parent="Enemies"]
+position = Vector2(1152, 182)
+script = ExtResource("2_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Goomba_72"]
+shape = SubResource("Rect_enemy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Goomba_72"]
+modulate = Color(0.55, 0.3, 0.1, 1)
+
+[node name="FloorCheck" type="RayCast2D" parent="Enemies/Goomba_72"]
+target_position = Vector2(-8, 16)
+
+[node name="WallCheck" type="RayCast2D" parent="Enemies/Goomba_72"]
+target_position = Vector2(10, 0)
+
+[node name="Goomba_100" type="CharacterBody2D" parent="Enemies"]
+position = Vector2(1600, 182)
+script = ExtResource("2_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Goomba_100"]
+shape = SubResource("Rect_enemy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Goomba_100"]
+modulate = Color(0.55, 0.3, 0.1, 1)
+
+[node name="FloorCheck" type="RayCast2D" parent="Enemies/Goomba_100"]
+target_position = Vector2(-8, 16)
+
+[node name="WallCheck" type="RayCast2D" parent="Enemies/Goomba_100"]
+target_position = Vector2(10, 0)
+
+[node name="Goomba_240" type="CharacterBody2D" parent="Enemies"]
+position = Vector2(3840, 182)
+script = ExtResource("2_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Goomba_240"]
+shape = SubResource("Rect_enemy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Goomba_240"]
+modulate = Color(0.55, 0.3, 0.1, 1)
+
+[node name="FloorCheck" type="RayCast2D" parent="Enemies/Goomba_240"]
+target_position = Vector2(-8, 16)
+
+[node name="WallCheck" type="RayCast2D" parent="Enemies/Goomba_240"]
+target_position = Vector2(10, 0)
+
+[node name="Goomba_270" type="CharacterBody2D" parent="Enemies"]
+position = Vector2(4320, 182)
+script = ExtResource("2_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Goomba_270"]
+shape = SubResource("Rect_enemy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Goomba_270"]
+modulate = Color(0.55, 0.3, 0.1, 1)
+
+[node name="FloorCheck" type="RayCast2D" parent="Enemies/Goomba_270"]
+target_position = Vector2(-8, 16)
+
+[node name="WallCheck" type="RayCast2D" parent="Enemies/Goomba_270"]
+target_position = Vector2(10, 0)
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin_22" type="Area2D" parent="Coins"]
+position = Vector2(352, 128)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_22"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_22"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_50_a" type="Area2D" parent="Coins"]
+position = Vector2(800, 120)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_50_a"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_50_a"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_50_b" type="Area2D" parent="Coins"]
+position = Vector2(832, 104)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_50_b"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_50_b"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_50_c" type="Area2D" parent="Coins"]
+position = Vector2(864, 88)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_50_c"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_50_c"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_68" type="Area2D" parent="Coins"]
+position = Vector2(1088, 96)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_68"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_68"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_gap_a" type="Area2D" parent="Coins"]
+position = Vector2(2032, 104)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_gap_a"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_gap_a"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_gap_b" type="Area2D" parent="Coins"]
+position = Vector2(2064, 88)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_gap_b"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_gap_b"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_gap_c" type="Area2D" parent="Coins"]
+position = Vector2(2096, 72)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_gap_c"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_gap_c"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_gap_d" type="Area2D" parent="Coins"]
+position = Vector2(2128, 88)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_gap_d"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_gap_d"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_gap_e" type="Area2D" parent="Coins"]
+position = Vector2(2160, 104)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_gap_e"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_gap_e"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_plat_a" type="Area2D" parent="Coins"]
+position = Vector2(3104, 104)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_plat_a"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_plat_a"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_plat_b" type="Area2D" parent="Coins"]
+position = Vector2(3232, 72)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_plat_b"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_plat_b"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Coin_plat_c" type="Area2D" parent="Coins"]
+position = Vector2(3392, 88)
+script = ExtResource("4_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin_plat_c"]
+shape = SubResource("Rect_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins/Coin_plat_c"]
+modulate = Color(1, 0.9, 0, 1)
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="Checkpoint_170" type="Area2D" parent="Checkpoints"]
+position = Vector2(2720, 176)
+script = ExtResource("5_checkpoint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint_170"]
+shape = SubResource("Rect_checkpoint")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoints/Checkpoint_170"]
+modulate = Color(1, 0, 0, 1)
+
+[node name="Checkpoint_270" type="Area2D" parent="Checkpoints"]
+position = Vector2(4320, 176)
+script = ExtResource("5_checkpoint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint_270"]
+shape = SubResource("Rect_checkpoint")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoints/Checkpoint_270"]
+modulate = Color(1, 0, 0, 1)
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(4960, 176)
+script = ExtResource("6_goal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("Rect_goal")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
+modulate = Color(1, 1, 0, 1)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 150.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "MARIO 000000"
+
+[node name="CoinsLabel" type="Label" parent="UI"]
+offset_left = 180.0
+offset_top = 5.0
+offset_right = 260.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "COINS x00"
+
+[node name="WorldLabel" type="Label" parent="UI"]
+offset_left = 300.0
+offset_top = 5.0
+offset_right = 400.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "WORLD 1-1"
+
+[node name="TimeLabel" type="Label" parent="UI"]
+offset_left = 420.0
+offset_top = 5.0
+offset_right = 520.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "TIME 400"

@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=3 uid="uid://chatui"]
+
+[ext_resource type="Script" path="res://scripts/chat_ui.gd" id="1_script"]
+
+[node name="ChatUI" type="CanvasLayer"]
+script = ExtResource("1_script")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -340.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 450.0
+grow_horizontal = 0
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "AI GAME ASSISTANT"
+horizontal_alignment = 1
+
+[node name="Pipeline" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+text = "Prompt → Jev classifies → LLM executes"
+horizontal_alignment = 1
+
+[node name="HSep" type="HSeparator" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="LLMKeyLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "LLM API Key (OpenAI or Anthropic):"
+
+[node name="LLMKeyRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Panel/VBox/LLMKeyRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Paste LLM key..."
+secret = true
+
+[node name="OptionButton" type="OptionButton" parent="Panel/VBox/LLMKeyRow"]
+layout_mode = 2
+
+[node name="HSep2" type="HSeparator" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="SaveRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="SaveBtn" type="Button" parent="Panel/VBox/SaveRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save LLM Key"
+
+[node name="HSep3" type="HSeparator" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="Output" type="RichTextLabel" parent="Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0.8, 0, 1)
+theme_override_font_sizes/normal_font_size = 11
+text = "Jev key loaded. Enter your LLM key above."
+scroll_following = true
+
+[node name="HSep4" type="HSeparator" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="InputRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Panel/VBox/InputRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Ask something..."
+
+[node name="SendBtn" type="Button" parent="Panel/VBox/InputRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Send"

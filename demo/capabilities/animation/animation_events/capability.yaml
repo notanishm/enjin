@@ -1,0 +1,48 @@
+﻿# Capability: Animation Events
+# Triggers events during animation playback
+
+id: animation.animation_events
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - animation_events
+  - timed_callbacks
+  - one_shot_events
+
+# Required Components
+required_components:
+  - AnimationPlayer
+optional_components: []
+
+# Integration
+adapter: godot_animation_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - animation_events_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Triggers events at specific times during animation playback.
+  Supports one-shot and repeated events.

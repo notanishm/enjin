@@ -1,0 +1,73 @@
+﻿# Capability: Behavior Tree AI
+# AI system using behavior trees
+
+id: ai.behavior_tree
+version: 1.0.0
+godot_versions:
+  - 4.6
+  - 4.7
+
+# Architecture
+architecture: GDExtension
+language: C++/GDScript
+
+# Source Provenance
+source: limbonaut/limboai
+upstream_sources:
+  - Relintai/broken_seals
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies:
+  - LimboAI Plugin (GDExtension)
+
+# Features
+features:
+  - behavior_trees
+  - state_machines
+  - blackboards
+  - visual_editor
+  - debugger
+
+# Required Components
+required_components:
+  - BTPlayer
+  - BTBehaviorTree
+
+# Optional Components
+optional_components:
+  - LimboHSM
+  - BTTask
+  - BTComposite
+
+# Integration
+adapter: godot_ai_adapter
+integration_type: plugin
+
+# Testing
+tests:
+  - behavior_tree_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Behavior tree AI system with visual editor and debugger.
+  Use as plugin, do not extract code.
+
+# Provenance
+provenance:
+  extracted_from: limbonaut/limboai
+  reference: Relintai/broken_seals
+  adapted_by: AI Capability Extractor v1.0
+  extraction_date: 2026-09-21
+  normalized: true
+
+# Notes
+notes: |
+  Plugin only - consume as LimboAI, not extracted code.
+  Broken Seals uses Pandemonium Engine (not standard Godot).
+  For standard Godot, use LimboAI plugin or re-implement core concepts.

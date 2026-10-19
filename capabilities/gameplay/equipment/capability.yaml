@@ -1,0 +1,47 @@
+﻿# Capability: Equipment System
+# Manages equipment slots and stat bonuses
+
+id: gameplay.equipment
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - equipment_slots
+  - stat_bonuses
+  - item_management
+
+# Required Components
+required_components: []
+optional_components:
+  - InventorySystem
+
+# Integration
+adapter: godot_gameplay_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - equipment_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Equipment system with slots and stat calculation.

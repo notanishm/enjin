@@ -1,0 +1,48 @@
+﻿# Capability: Locomotion Blender
+# Blends animations based on movement parameters
+
+id: animation.locomotion
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - animation_blending
+  - movement_states
+  - speed_based_transitions
+
+# Required Components
+required_components:
+  - AnimationPlayer
+optional_components:
+  - AnimationTree
+
+# Integration
+adapter: godot_animation_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - locomotion_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Blends walk/run/idle animations based on movement speed.

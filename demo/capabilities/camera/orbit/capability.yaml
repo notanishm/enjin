@@ -1,0 +1,38 @@
+﻿# Capability Metadata
+# This file defines the capability interface and metadata
+
+id: <!-- TODO: e.g., character.movement.third_person -->
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: <!-- TODO: CharacterBody3D / RigidBody3D / Node -->
+language: GDScript
+
+# Source Provenance
+source: <!-- TODO: Source repository -->
+upstream_sources: []  # List of upstream sources if derived
+
+# Licensing
+license: VERIFY  # MIT / GPL / VERIFY / LICENSE_REVIEW_REQUIRED
+
+# Dependencies
+dependencies: []  # List of required capabilities or plugins
+
+# Features
+features: []  # List of features this capability provides
+
+# Required Components
+required_components: []  # Required node types, input maps, etc
+optional_components: []  # Optional components that enhance functionality
+
+# Integration
+adapter: <!-- TODO: Adapter name if needed -->
+integration_type: capability  # capability / plugin / library
+
+# Testing
+tests: []  # List of test files
+
+# Status
+status: UNVERIFIED  # UNVERIFIED / VERIFIED / DEPRECATED

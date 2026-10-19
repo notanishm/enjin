@@ -1,0 +1,47 @@
+﻿# Capability: Ambient Audio
+# Plays ambient background sounds
+
+id: audio.ambient
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - ambient_sounds
+  - zone_based_audio
+  - fade_transitions
+
+# Required Components
+required_components:
+  - AudioStreamPlayer
+optional_components: []
+
+# Integration
+adapter: godot_audio_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - ambient_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Manages ambient background audio with zone-based switching.

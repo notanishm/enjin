@@ -1,0 +1,68 @@
+﻿# Capability: Jump
+# Standalone jump mechanic capability
+
+id: character.jump
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: CharacterBody3D
+language: GDScript
+
+# Source Provenance
+source: Jeh3no/Godot-Third-Person-Controller
+upstream_sources:
+  - gtibo/Godot-Plush-Character
+  - godotengine/godot-demo-projects
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - jump_velocity
+  - coyote_time
+  - jump_buffer
+  - multi_jump
+  - air_control
+  - gravity_multiplier
+
+# Required Components
+required_components:
+  - CharacterBody3D
+  - input_map:
+      - jump
+
+# Optional Components
+optional_components:
+  - AnimationPlayer
+  - AnimationTree
+
+# Integration
+adapter: godot_jump_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - jump_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Standalone jump mechanic with coyote time, jump buffering,
+  and multi-jump support. Can be used independently or
+  integrated with movement capabilities.
+
+# Provenance
+provenance:
+  extracted_from: Jeh3no/Godot-Third-Person-Controller
+  derived_from: gtibo/Godot-Plush-Character
+  adapted_by: AI Capability Extractor v1.0
+  extraction_date: 2026-09-21
+  normalized: true

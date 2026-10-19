@@ -1,0 +1,116 @@
+﻿# Capability: Character Movement
+# Normalized third-person character movement capability
+
+id: character.movement.third_person
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: CharacterBody3D
+language: GDScript
+
+# Source Provenance
+source: Jeh3no/Godot-Third-Person-Controller
+upstream_sources:
+  - gtibo/Godot-Plush-Character
+  - godotengine/godot-demo-projects
+  - studiobool/SuperTuxWorld
+
+# Licensing
+license: MIT  # Verified from source repositories
+
+# Dependencies
+dependencies: []  # No external dependencies
+
+# Features
+features:
+  - walking
+  - running
+  - jumping
+  - slopes
+  - acceleration
+  - deceleration
+  - coyote_time
+  - jump_buffer
+  - multi_jump
+  - air_control
+  - state_machine
+
+# Required Components
+required_components:
+  - CharacterBody3D
+  - input_map:
+      - move_forward
+      - move_backward
+      - move_left
+      - move_right
+      - jump
+      - run
+
+# Optional Components
+optional_components:
+  - AnimationTree
+  - Camera3D
+  - AnimationPlayer
+
+# Integration
+adapter: godot_character_controller_adapter
+integration_type: capability  # capability / plugin / library
+
+# Testing
+tests:
+  - movement_test.gd
+  - jump_test.gd
+  - state_machine_test.gd
+
+# Status
+status: VERIFIED  # UNVERIFIED / VERIFIED / DEPRECATED
+
+# Capability Description
+description: |
+  Third-person character movement capability with finite state machine architecture.
+  Extracted from Jeh3no/Godot-Third-Person-Controller and normalized for reuse.
+  
+  Features:
+  - Smooth acceleration/deceleration
+  - Slope traversal
+  - Jump buffering and coyote time
+  - Configurable multi-jump
+  - Air control via curves
+  - State machine for behavior management
+
+# Architecture Notes
+architecture_notes: |
+  Uses CharacterBody3D as the base node type.
+  Implements finite state machine pattern with states:
+  - Idle: No movement input
+  - Walk: Standard movement
+  - Run: Faster movement (toggle or hold)
+  - Jump: Active jump with air control
+  - InAir: Airborne without jumping
+  
+  Each state has its own script for behavior management.
+  Input is centralized in an input management component.
+
+# Integration Guide
+integration_guide: |
+  1. Add capability to project
+  2. Configure input map actions:
+     - move_forward (W, Up)
+     - move_backward (S, Down)
+     - move_left (A, Left)
+     - move_right (D, Right)
+     - jump (Space)
+     - run (Shift)
+  3. Add CharacterBody3D node
+  4. Attach movement script
+  5. Configure movement parameters in inspector
+
+# Provenance
+provenance:
+  extracted_from: Jeh3no/Godot-Third-Person-Controller
+  derived_from: gtibo/Godot-Plush-Character
+  adapted_by: AI Capability Extractor v1.0
+  extraction_date: 2026-09-21
+  normalized: true

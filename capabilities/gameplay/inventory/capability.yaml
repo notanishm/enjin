@@ -1,0 +1,46 @@
+﻿# Capability: Inventory System
+# Manages items, slots, and inventory operations
+
+id: gameplay.inventory
+version: 1.0.0
+godot_versions:
+  - 4.x
+
+# Architecture
+architecture: Node
+language: GDScript
+
+# Source Provenance
+source: Simplified from common Godot patterns
+upstream_sources: []
+
+# Licensing
+license: MIT
+
+# Dependencies
+dependencies: []
+
+# Features
+features:
+  - item_stacking
+  - slot_management
+  - item_search
+
+# Required Components
+required_components: []
+optional_components: []
+
+# Integration
+adapter: godot_gameplay_adapter
+integration_type: capability
+
+# Testing
+tests:
+  - inventory_test.gd
+
+# Status
+status: VERIFIED
+
+# Description
+description: |
+  Inventory system with stacking, slots, and item management.

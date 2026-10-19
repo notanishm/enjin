@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://devenv"]
+
+[ext_resource type="Script" path="res://scripts/mcp_server.gd" id="1_mcp"]
+[ext_resource type="PackedScene" uid="uid://test2d" path="res://scenes/test2d.tscn" id="2_game"]
+[ext_resource type="PackedScene" uid="uid://chatui" path="res://scenes/chat_ui.tscn" id="3_chat"]
+
+[node name="DevEnvironment" type="Node"]
+
+[node name="MCP" type="Node" parent="."]
+script = ExtResource("1_mcp")
+
+[node name="Game" parent="." instance=ExtResource("2_game")]
+
+[node name="ChatUI" parent="." instance=ExtResource("3_chat")]
